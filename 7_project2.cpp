@@ -22,7 +22,7 @@ vector<string> SplitString(string line,string delim) {
     string temp;
     vector<string> result;
     size_t pos;
-    while ((pos = line.find(delim)!= std::string::npos)) {
+    while ((pos = line.find(delim))!= std::string::npos) {
         temp = line.substr(0,pos);
         if (temp != "") result.push_back(temp);
         line.erase(0,pos+delim.length());
@@ -82,7 +82,7 @@ sClient readNewClient(){
     cout<< "enter PinCode!\n";
     cin>>client.PinCode;
     cout<<"enter Name!\n";
-    getline(cin,client.Name);
+    getline(cin >> ws,client.Name);
     cout<<"enter Phone Number!\n";
     cin>>client.Phone;
     cout<<"enter account balance!\n";
@@ -110,24 +110,25 @@ vector<sClient> loadAClientsDataFromFile(const string fileName){
 void printClientRecordLine(sClient client){
     cout << "| " << setw(15) << left <<client.AccountNumber;
     cout << "| " << setw(10) << left <<client.PinCode;
-    cout << "| " << setw(40) << left <<client.Name;
+    cout << "| " << setw(25) << left <<client.Name;
     cout << "| " << setw(12) << left <<client.Phone;
     cout << "| " << setw(12) << left <<client.AccountBalance;
 }
 
 void ShowAllClientsScreen(){
     vector<sClient> allClients = loadAClientsDataFromFile(FileName);
-    cout << "\n\t\t\t\t\tClient List (" << allClients.size() << ")Client(s).";
-    cout << "\n----------------------------------------------";
-    cout <<"--------------------------------------------\n" << endl;
+    cout << "\n\t\t\t\t\tClient List (" << allClients.size() << ") Client(s).";
+    cout << "\n--------------------------------------------";
+    cout << "----------------------------------------------\n" << endl;
 
     cout << "| " << left << setw(15) << "Account Number";
     cout << "| " << left << setw(10) << "Pin Code";
-    cout << "| " << left << setw(40) << "Client Name";
+    cout << "| " << left << setw(25) << "Client Name";
     cout << "| " << left << setw(12) << "Phone";
     cout << "| " << left << setw(12) << "Balance";
-    cout<<"\n----------------------------------------------\n";
-    cout<<"--------------------------------------------\n";
+
+    cout << "\n--------------------------------------------";
+    cout << "----------------------------------------------\n" << endl;
     if(allClients.size() == 0)
         cout << "No Clients Available in the System!\n";
     else
@@ -136,8 +137,8 @@ void ShowAllClientsScreen(){
             cout << endl;
         }
 
-        cout<<"\n------------------------------------------------------";
-        cout<<"----------------------------------------------\n" << endl;
+    cout << "\n--------------------------------------------";
+    cout << "----------------------------------------------\n" << endl;
 }
 
 void printClientCard(sClient client){
@@ -147,7 +148,7 @@ void printClientCard(sClient client){
     cout<<"\nPin code        : " << client.PinCode;
     cout<<"\nName            : " << client.Name;
     cout<<"\nPhone           : " << client.Phone;
-    cout<<"\nAccount Balance :" << client.AccountBalance;
+    cout<<"\nAccount Balance : " << client.AccountBalance << endl;
     cout << string(25,'-') << endl;
 }
 
